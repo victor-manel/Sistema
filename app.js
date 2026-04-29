@@ -6,7 +6,7 @@
 (function() {
     // 1. Defina seus horários aqui
     const horario = {
-        abertura: "07:00",
+        abertura: "06:00",
         fechamento: "21:00",
         fechadoDomingo: true
     };
