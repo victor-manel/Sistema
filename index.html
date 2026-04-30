@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#e63946">
     <meta name="description" content="Império Lanches e Pizzaria - Os melhores sabores da região">
-    <title>Império Lanches | Delivery Premium</title>
-    
+    <title>Império Lanches</title>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
 </head>
 <body>
-    <!-- Loading Screen -->
+
+    <!-- ==================== PRELOADER ==================== -->
     <div id="preloader">
         <div class="loader-content">
             <div class="loader-crown">👑</div>
@@ -31,7 +32,7 @@
         </div>
     </div>
 
-    <!-- Header Premium -->
+    <!-- ==================== HEADER ==================== -->
     <header id="header">
         <div class="header-container">
             <div class="header-top">
@@ -42,11 +43,11 @@
                     <div class="store-info">
                         <h1>Império Lanches</h1>
                         <div class="store-meta">
-                            <span class="status-badge open">
-                                 <div id="status-loja" class="status-badge">
-        <span class="pulse"></span>
-        <span id="label">Verificando...</span>
-    </div>
+                            <!-- Status da loja -->
+                            <div id="status-loja" class="status-badge">
+                                <span class="pulse"></span>
+                                <span id="label">Verificando...</span>
+                            </div>
                             <span class="delivery-time">
                                 <i class="far fa-clock"></i> 30-45 min
                             </span>
@@ -61,7 +62,8 @@
                     <span class="cart-badge" id="cartBadge">0</span>
                 </button>
             </div>
-            
+
+            <!-- Busca -->
             <div class="search-section">
                 <div class="search-wrapper">
                     <i class="fas fa-search"></i>
@@ -72,14 +74,14 @@
                 </div>
             </div>
 
-            <nav class="category-nav" id="categoryNav">
-                <!-- Categorias geradas via JS -->
-            </nav>
+            <!-- Categorias -->
+            <nav class="category-nav" id="categoryNav"></nav>
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
     <main class="main-content">
+
         <!-- Hero Banner -->
         <section class="hero-banner">
             <div class="hero-content">
@@ -97,14 +99,12 @@
             </div>
         </section>
 
-        <!-- Menu Grid -->
+        <!-- Menu -->
         <section class="menu-section">
-            <div id="menuContainer">
-                <!-- Produtos gerados via JS -->
-            </div>
+            <div id="menuContainer"></div>
         </section>
 
-        <!-- Info Section -->
+        <!-- Info -->
         <section class="info-section">
             <div class="info-grid">
                 <div class="info-card">
@@ -126,7 +126,7 @@
         </section>
     </main>
 
-    <!-- Floating Cart Bar -->
+    <!-- ==================== BARRA FLUTUANTE DO CARRINHO ==================== -->
     <div class="cart-bar" id="cartBar" onclick="toggleCart()">
         <div class="cart-bar-content">
             <div class="cart-count">
@@ -140,7 +140,7 @@
         </div>
     </div>
 
-    <!-- Cart Sidebar -->
+    <!-- ==================== SIDEBAR DO CARRINHO ==================== -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <button class="btn-close" onclick="toggleCart()">
@@ -151,7 +151,7 @@
                 <i class="fas fa-trash"></i> Limpar
             </button>
         </div>
-        
+
         <div class="cart-body" id="cartBody">
             <div class="cart-empty" id="cartEmpty">
                 <div class="empty-icon">🛒</div>
@@ -183,27 +183,26 @@
         </div>
     </div>
 
-    <!-- Product Modal -->
+    <!-- ==================== MODAL DO PRODUTO ==================== -->
     <div class="product-modal" id="productModal">
         <div class="modal-backdrop" onclick="closeProductModal()"></div>
         <div class="modal-container">
             <button class="modal-close" onclick="closeProductModal()">
                 <i class="fas fa-times"></i>
             </button>
-            
+
             <div class="modal-image">
                 <img id="modalImg" src="" alt="">
                 <div class="modal-badge" id="modalBadge"></div>
             </div>
-            
+
             <div class="modal-content">
                 <span class="modal-category" id="modalCategory"></span>
                 <h2 id="modalTitle"></h2>
                 <p class="modal-description" id="modalDescription"></p>
-                
-                <!-- Modifiers Section -->
+
                 <div id="modalModifiers"></div>
-                
+
                 <div class="modal-footer">
                     <div class="modal-price">
                         <span class="price-label">Valor</span>
@@ -224,16 +223,18 @@
         </div>
     </div>
 
-    <!-- Checkout Modal -->
+    <!-- ==================== MODAL DO CHECKOUT ==================== -->
     <div class="checkout-modal" id="checkoutModal">
         <div class="modal-backdrop" onclick="closeCheckout()"></div>
         <div class="modal-container checkout-container">
+
+            <!-- Header do checkout -->
             <div class="checkout-header">
                 <h2>Finalizar Pedido</h2>
                 <button onclick="closeCheckout()"><i class="fas fa-times"></i></button>
             </div>
 
-            <!-- Progress Steps -->
+            <!-- Steps -->
             <div class="checkout-steps">
                 <div class="step active" data-step="1">
                     <div class="step-num">1</div>
@@ -252,7 +253,8 @@
             </div>
 
             <div class="checkout-body">
-                <!-- Step 1: Address -->
+
+                <!-- ========== STEP 1: ENDEREÇO ========== -->
                 <div class="checkout-step active" id="step1">
                     <h3><i class="fas fa-map-marker-alt"></i> Endereço de Entrega</h3>
                     <div class="form-group">
@@ -286,10 +288,20 @@
                     </button>
                 </div>
 
-                <!-- Step 2: Payment -->
+                <!-- ========== STEP 2: PAGAMENTO ========== -->
                 <div class="checkout-step" id="step2">
                     <h3><i class="fas fa-credit-card"></i> Forma de Pagamento</h3>
+
+                    <!-- Total resumido -->
+                    <div class="payment-total-summary">
+                        <span>Total do pedido:</span>
+                        <strong id="paymentTotalDisplay">R$ 0,00</strong>
+                    </div>
+
+                    <!-- Opções de pagamento -->
                     <div class="payment-options">
+
+                        <!-- PIX -->
                         <label class="payment-option">
                             <input type="radio" name="payment" value="pix" checked onchange="togglePaymentView()">
                             <div class="payment-card">
@@ -298,9 +310,14 @@
                                     <strong>PIX</strong>
                                     <span>Aprovação instantânea</span>
                                 </div>
-                                <div class="payment-badge">Recomendado</div>
+                                <div class="payment-right">
+                                    <div class="payment-badge">Recomendado</div>
+                                    <div class="payment-value" id="pixCardValue">R$ 0,00</div>
+                                </div>
                             </div>
                         </label>
+
+                        <!-- Cartão -->
                         <label class="payment-option">
                             <input type="radio" name="payment" value="cartao" onchange="togglePaymentView()">
                             <div class="payment-card">
@@ -309,8 +326,13 @@
                                     <strong>Cartão</strong>
                                     <span>Maquininha na entrega</span>
                                 </div>
+                                <div class="payment-right">
+                                    <div class="payment-value" id="cartaoCardValue">R$ 0,00</div>
+                                </div>
                             </div>
                         </label>
+
+                        <!-- Dinheiro -->
                         <label class="payment-option">
                             <input type="radio" name="payment" value="dinheiro" onchange="togglePaymentView()">
                             <div class="payment-card">
@@ -319,11 +341,14 @@
                                     <strong>Dinheiro</strong>
                                     <span>Pagamento na entrega</span>
                                 </div>
+                                <div class="payment-right">
+                                    <div class="payment-value" id="dinheiroCardValue">R$ 0,00</div>
+                                </div>
                             </div>
                         </label>
                     </div>
 
-                    <!-- PIX Section -->
+                    <!-- Detalhes PIX -->
                     <div class="payment-details" id="pixSection">
                         <div class="pix-container">
                             <div class="pix-amount">
@@ -331,8 +356,8 @@
                                 <strong id="pixAmount">R$ 0,00</strong>
                             </div>
                             <div class="pix-qr">
-                                <img id="pixQR" src="" alt="QR Code PIX">
-                                <div class="pix-loading" id="pixLoading">
+                                <img id="pixQR" src="" alt="QR Code PIX" style="display:none;">
+                                <div class="pix-loading" id="pixLoading" style="display:flex;">
                                     <div class="spinner"></div>
                                     <span>Gerando código...</span>
                                 </div>
@@ -359,7 +384,7 @@
                         </div>
                     </div>
 
-                    <!-- Cash Section -->
+                    <!-- Detalhes Dinheiro -->
                     <div class="payment-details" id="cashSection" style="display: none;">
                         <div class="cash-question">
                             <i class="fas fa-coins"></i>
@@ -397,26 +422,23 @@
                     </div>
                 </div>
 
-                <!-- Step 3: Review -->
+                <!-- ========== STEP 3: REVISÃO ========== -->
                 <div class="checkout-step" id="step3">
                     <h3><i class="fas fa-clipboard-check"></i> Revisar Pedido</h3>
-                    
+
                     <div class="order-review">
                         <div class="review-section">
                             <h4><i class="fas fa-shopping-bag"></i> Itens</h4>
                             <div id="reviewItems"></div>
                         </div>
-                        
                         <div class="review-section">
                             <h4><i class="fas fa-user"></i> Cliente</h4>
                             <div class="review-info" id="reviewCustomer"></div>
                         </div>
-                        
                         <div class="review-section">
                             <h4><i class="fas fa-map-marker-alt"></i> Entrega</h4>
                             <div class="review-info" id="reviewAddress"></div>
                         </div>
-                        
                         <div class="review-section">
                             <h4><i class="fas fa-credit-card"></i> Pagamento</h4>
                             <div class="review-info" id="reviewPayment"></div>
@@ -424,9 +446,18 @@
                     </div>
 
                     <div class="order-total">
-                        <div class="total-row"><span>Subtotal</span><span id="reviewSubtotal">R$ 0,00</span></div>
-                        <div class="total-row"><span>Entrega</span><span id="reviewDelivery">R$ 5,00</span></div>
-                        <div class="total-row grand"><span>Total</span><span id="reviewTotal">R$ 0,00</span></div>
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span id="reviewSubtotal">R$ 0,00</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Entrega</span>
+                            <span id="reviewDelivery">R$ 5,00</span>
+                        </div>
+                        <div class="total-row grand">
+                            <span>Total</span>
+                            <span id="reviewTotal">R$ 0,00</span>
+                        </div>
                     </div>
 
                     <div class="trust-badges">
@@ -444,14 +475,15 @@
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Overlay -->
+            </div><!-- fim checkout-body -->
+        </div><!-- fim modal-container -->
+    </div><!-- fim checkout-modal -->
+
+    <!-- ==================== OVERLAY ==================== -->
     <div class="overlay" id="overlay" onclick="closeAll()"></div>
 
-    <!-- Toast Notification -->
+    <!-- ==================== TOAST ==================== -->
     <div class="toast" id="toast">
         <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
         <div class="toast-content">
@@ -460,17 +492,18 @@
         </div>
     </div>
 
-    <!-- WhatsApp Float -->
+    <!-- ==================== WHATSAPP FLOAT ==================== -->
     <a href="https://wa.me/5584994994919" target="_blank" class="whatsapp-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Back to Top -->
+    <!-- ==================== BACK TO TOP ==================== -->
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- ==================== SCRIPT ==================== -->
     <script src="app.js"></script>
-    
+
 </body>
 </html>
