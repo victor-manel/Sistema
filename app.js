@@ -294,7 +294,7 @@ const MENU = [
     name: "X-Burg",
     description: "Pão, hambúrguer, queijo e presunto",
     price: 7.0,
-    image: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
+    image: "imagem/xburguer.jpg",
     badge: null,
     modifiers: [],
   },
