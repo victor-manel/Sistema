@@ -3,507 +3,442 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#e63946">
-    <meta name="description" content="Império Lanches e Pizzaria - Os melhores sabores da região">
-    <title>Império Lanches</title>
-
-    <!-- Fonts -->
+    <meta name="theme-color" content="#ff5722">
+    <meta name="description" content="------- Lanches e Pizzaria - Os melhores sabores da região. Entrega rápida em até 45 minutos.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>-------- Lanches & Pizzaria</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ==================== PRELOADER ==================== -->
-    <div id="preloader">
-        <div class="loader-content">
-            <div class="loader-crown">👑</div>
-            <h1>IMPÉRIO</h1>
-            <p>Lanches & Pizzaria</p>
-            <div class="loader-bar"><div class="loader-fill"></div></div>
-        </div>
+<!-- PRELOADER -->
+<div id="preloader" aria-hidden="true">
+    <div class="loader-content">
+        <div class="loader-crown" aria-hidden="true">👑</div>
+        <h1>---------</h1>
+        <p>Lanches & Pizzaria</p>
+        <div class="loader-bar"><div class="loader-fill"></div></div>
     </div>
+</div>
 
-    <!-- ==================== HEADER ==================== -->
-    <header id="header">
-        <div class="header-container">
-            <div class="header-top">
-                <div class="store-branding">
-                    <div class="store-avatar">
-                        <span>👑</span>
-                    </div>
-                    <div class="store-info">
-                        <h1>Império Lanches</h1>
-                        <div class="store-meta">
-                            <!-- Status da loja -->
-                            <div id="status-loja" class="status-badge">
-                                <span class="pulse"></span>
-                                <span id="label">Verificando...</span>
-                            </div>
-                            <span class="delivery-time">
-                                <i class="far fa-clock"></i> 30-45 min
-                            </span>
-                            <span class="rating">
-                                <i class="fas fa-star"></i> 4.9
-                            </span>
+<!-- HEADER -->
+<header id="header" role="banner">
+    <div class="header-container">
+        <div class="header-top">
+            <div class="store-branding">
+                <div class="store-avatar" aria-hidden="true"><span>👑</span></div>
+                <div class="store-info">
+                    <h1>------- Lanches</h1>
+                    <div class="store-meta">
+                        <div id="status-loja" class="status-badge" role="status" aria-live="polite">
+                            <span class="pulse"></span>
+                            <span id="status-label">Verificando...</span>
                         </div>
+                        <span class="delivery-time"><i class="far fa-clock" aria-hidden="true"></i> 30-45 min</span>
+                        <span class="rating"><i class="fas fa-star" aria-hidden="true"></i> 4.9</span>
                     </div>
                 </div>
-                <button class="cart-toggle" onclick="toggleCart()">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+            <button class="cart-toggle" id="cartToggleBtn" onclick="toggleCart()" aria-label="Abrir carrinho">
+                <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                <span class="cart-badge" id="cartBadge" aria-live="polite">0</span>
+            </button>
+        </div>
+        <div class="search-section">
+            <div class="search-wrapper">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input type="text" id="searchInput" placeholder="O que você quer comer hoje?" oninput="searchMenu()" aria-label="Buscar no cardápio" autocomplete="off">
+                <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpar busca">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <nav class="category-nav" id="categoryNav" role="tablist" aria-label="Categorias do cardápio"></nav>
+    </div>
+</header>
+
+<!-- MAIN -->
+<main class="main-content" role="main">
+   
+
+    <section class="menu-section" aria-label="Cardápio">
+        <div id="menuContainer"></div>
+    </section>
+
+    <section class="info-section" aria-label="Informações">
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-icon"><i class="fas fa-motorcycle" aria-hidden="true"></i></div>
+                <h3>Entrega Rápida</h3>
+                <p>Receba no conforto da sua casa em até 45 minutos</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+                <h3>Pagamento Seguro</h3>
+                <p>PIX, cartão ou dinheiro. Você escolhe!</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon"><i class="fas fa-heart" aria-hidden="true"></i></div>
+                <h3>Qualidade Garantida</h3>
+                <p>Ingredientes frescos selecionados diariamente</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer" role="contentinfo">
+        <p>© 2025 ------- Lanches & Pizzaria — Todos os direitos reservados</p>
+    </footer>
+</main>
+
+<!-- BARRA FLUTUANTE DO CARRINHO -->
+<div class="cart-bar" id="cartBar" onclick="toggleCart()" role="button" aria-label="Ver sacola" tabindex="0">
+    <div class="cart-bar-content">
+        <div class="cart-count">
+            <span class="count-badge" id="cartBarQty">0</span>
+            <span>Ver sacola</span>
+        </div>
+        <div class="cart-total">
+            <strong id="cartBarTotal">R$ 0,00</strong>
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+
+<!-- SIDEBAR DO CARRINHO -->
+<aside class="cart-sidebar" id="cartSidebar" role="dialog" aria-label="Sacola de compras" aria-hidden="true">
+    <div class="cart-header">
+        <button class="btn-close" onclick="toggleCart()" aria-label="Fechar sacola">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <h2>Sua Sacola</h2>
+        <button class="btn-clear" onclick="clearCart()" aria-label="Limpar sacola">
+            <i class="fas fa-trash" aria-hidden="true"></i> Limpar
+        </button>
+    </div>
+    <div class="cart-body" id="cartBody">
+        <div class="cart-empty" id="cartEmpty">
+            <div class="empty-icon" aria-hidden="true">🛒</div>
+            <h3>Sua sacola está vazia</h3>
+            <p>Adicione itens deliciosos do nosso cardápio!</p>
+            <button class="btn-browse" onclick="toggleCart()">Ver Cardápio</button>
+        </div>
+        <div id="cartItems"></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-row">
+                <span>Taxa de entrega</span>
+                <span id="cartDelivery">R$ 5,00</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span id="cartTotal">R$ 0,00</span>
+            </div>
+        </div>
+        <button class="btn-checkout" onclick="openCheckout()">
+            Finalizar Pedido <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </button>
+    </div>
+</aside>
+
+<!-- MODAL DO PRODUTO -->
+<div class="product-modal" id="productModal" role="dialog" aria-label="Detalhes do produto" aria-hidden="true">
+    <div class="modal-backdrop" onclick="closeProductModal()"></div>
+    <div class="modal-container" role="document">
+        <button class="modal-close" onclick="closeProductModal()" aria-label="Fechar">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-image">
+            <img id="modalImg" src="" alt="">
+            <div class="modal-badge" id="modalBadge"></div>
+        </div>
+        <div class="modal-content">
+            <span class="modal-category" id="modalCategory"></span>
+            <h2 id="modalTitle"></h2>
+            <p class="modal-description" id="modalDescription"></p>
+            <div id="modalModifiers"></div>
+            <div class="modal-footer">
+                <div class="modal-price">
+                    <span class="price-label">Valor</span>
+                    <span class="price-value" id="modalPrice">R$ 0,00</span>
+                </div>
+                <div class="modal-actions">
+                    <div class="qty-selector" role="group" aria-label="Quantidade">
+                        <button onclick="updateModalQty(-1)" aria-label="Diminuir quantidade"><i class="fas fa-minus"></i></button>
+                        <span id="modalQty" aria-live="polite">1</span>
+                        <button onclick="updateModalQty(1)" aria-label="Aumentar quantidade"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <button class="btn-add" onclick="addToCartFromModal()">
+                        Adicionar <span class="btn-add-sep">•</span> <span id="modalTotal">R$ 0,00</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE CHECKOUT -->
+<div class="checkout-modal" id="checkoutModal" role="dialog" aria-label="Finalizar pedido" aria-hidden="true">
+    <div class="modal-backdrop" onclick="closeCheckout()"></div>
+    <div class="modal-container checkout-container" role="document">
+        <div class="checkout-header">
+            <h2>Finalizar Pedido</h2>
+            <button onclick="closeCheckout()" aria-label="Fechar"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="checkout-steps" role="progressbar">
+            <div class="step active" data-step="1">
+                <div class="step-num">1</div>
+                <span>Endereço</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" data-step="2">
+                <div class="step-num">2</div>
+                <span>Pagamento</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" data-step="3">
+                <div class="step-num">3</div>
+                <span>Revisão</span>
+            </div>
+        </div>
+        <div class="checkout-body">
+            <!-- STEP 1: Endereço -->
+            <div class="checkout-step active" id="step1">
+                <h3><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Endereço de Entrega</h3>
+                <div class="form-group">
+                    <label for="customerName">Nome completo *</label>
+                    <input type="text" id="customerName" placeholder="Seu nome" autocomplete="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">WhatsApp *</label>
+                    <input type="tel" id="customerPhone" placeholder="(84) 99999-9999" maxlength="15" autocomplete="tel" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerStreet">Rua *</label>
+                    <input type="text" id="customerStreet" placeholder="Nome da rua" autocomplete="street-address" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="customerNumber">Número *</label>
+                        <input type="text" id="customerNumber" placeholder="123" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerNeighborhood">Bairro *</label>
+                        <input type="text" id="customerNeighborhood" placeholder="Bairro" autocomplete="address-level2" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="customerComplement">Complemento</label>
+                    <input type="text" id="customerComplement" placeholder="Apto, bloco, referência..." autocomplete="off">
+                </div>
+                <button class="btn-next" onclick="goToStep(2)">
+                    Continuar <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </button>
             </div>
 
-            <!-- Busca -->
-            <div class="search-section">
-                <div class="search-wrapper">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="O que você quer comer hoje?" oninput="searchMenu()">
-                    <button class="search-clear" id="searchClear" onclick="clearSearch()">
-                        <i class="fas fa-times"></i>
+            <!-- STEP 2: Pagamento -->
+            <div class="checkout-step" id="step2">
+                <h3><i class="fas fa-credit-card" aria-hidden="true"></i> Forma de Pagamento</h3>
+                <div class="payment-total-summary">
+                    <span>Total do pedido:</span>
+                    <strong id="paymentTotalDisplay">R$ 0,00</strong>
+                </div>
+                <div class="payment-options" role="radiogroup" aria-label="Forma de pagamento">
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="pix" checked onchange="togglePaymentView()">
+                        <div class="payment-card">
+                            <div class="payment-icon pix"><i class="fas fa-qrcode" aria-hidden="true"></i></div>
+                            <div class="payment-info">
+                                <strong>PIX</strong>
+                                <span>Aprovação instantânea</span>
+                            </div>
+                            <div class="payment-right">
+                                <div class="payment-badge">Recomendado</div>
+                                <div class="payment-value" id="pixCardValue">R$ 0,00</div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="cartao" onchange="togglePaymentView()">
+                        <div class="payment-card">
+                            <div class="payment-icon card"><i class="fas fa-credit-card" aria-hidden="true"></i></div>
+                            <div class="payment-info">
+                                <strong>Cartão</strong>
+                                <span>Maquininha na entrega</span>
+                            </div>
+                            <div class="payment-right">
+                                <div class="payment-value" id="cartaoCardValue">R$ 0,00</div>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="dinheiro" onchange="togglePaymentView()">
+                        <div class="payment-card">
+                            <div class="payment-icon cash"><i class="fas fa-money-bill-wave" aria-hidden="true"></i></div>
+                            <div class="payment-info">
+                                <strong>Dinheiro</strong>
+                                <span>Pagamento na entrega</span>
+                            </div>
+                            <div class="payment-right">
+                                <div class="payment-value" id="dinheiroCardValue">R$ 0,00</div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="payment-details" id="pixSection">
+                    <div class="pix-container">
+                        <div class="pix-amount">
+                            <span>Valor a pagar:</span>
+                            <strong id="pixAmount">R$ 0,00</strong>
+                        </div>
+                        <div class="pix-qr">
+                            <img id="pixQR" src="" alt="QR Code PIX" style="display:none;">
+                            <div class="pix-loading" id="pixLoading">
+                                <div class="spinner"></div>
+                                <span>Gerando código...</span>
+                            </div>
+                        </div>
+                        <div class="pix-copy">
+                            <label>Código PIX Copia e Cola:</label>
+                            <div class="copy-field">
+                                <input type="text" id="pixCode" readonly aria-label="Código PIX">
+                                <button onclick="copyPixCode()" aria-label="Copiar código PIX"><i class="fas fa-copy" aria-hidden="true"></i> Copiar</button>
+                            </div>
+                        </div>
+                        <div class="pix-key">
+                            <label>Ou use a chave:</label>
+                            <div class="copy-field">
+                                <input type="text" id="pixKey" value="84994994919" readonly aria-label="Chave PIX">
+                                <button onclick="copyPixKey()" aria-label="Copiar chave PIX"><i class="fas fa-copy" aria-hidden="true"></i> Copiar</button>
+                            </div>
+                            <small>⚠️ Informe o valor exato: <strong id="pixKeyValue">R$ 0,00</strong></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-details" id="cashSection" style="display:none;">
+                    <div class="cash-question">
+                        <i class="fas fa-coins" aria-hidden="true"></i>
+                        <span>Precisa de troco?</span>
+                    </div>
+                    <div class="cash-options" role="radiogroup" aria-label="Troco">
+                        <label class="cash-option">
+                            <input type="radio" name="change" value="no" checked onchange="toggleChangeField()">
+                            <div class="cash-card">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                <span>Não preciso</span>
+                            </div>
+                        </label>
+                        <label class="cash-option">
+                            <input type="radio" name="change" value="yes" onchange="toggleChangeField()">
+                            <div class="cash-card">
+                                <i class="fas fa-exchange-alt" aria-hidden="true"></i>
+                                <span>Sim, preciso</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="form-group" id="changeField" style="display:none;">
+                        <label for="changeAmount">Troco para quanto?</label>
+                        <input type="text" id="changeAmount" placeholder="R$ 50,00">
+                    </div>
+                </div>
+
+                <div class="step-buttons">
+                    <button class="btn-back" onclick="goToStep(1)">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar
+                    </button>
+                    <button class="btn-next" onclick="goToStep(3)">
+                        Revisar <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Categorias -->
-            <nav class="category-nav" id="categoryNav"></nav>
-        </div>
-    </header>
-
-    <!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
-    <main class="main-content">
-
-        <!-- Hero Banner -->
-        <section class="hero-banner">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <span class="hero-tag">🔥 Promoção do Dia</span>
-                    <h2>Terça da Pizza</h2>
-                    <p>Compre 1 pizza grande e leve a segunda com 50% OFF</p>
-                    <button class="btn-hero" onclick="scrollToCategory('pizzas')">
-                        Aproveitar Agora <i class="fas fa-arrow-right"></i>
+            <!-- STEP 3: Revisão -->
+            <div class="checkout-step" id="step3">
+                <h3><i class="fas fa-clipboard-check" aria-hidden="true"></i> Revisar Pedido</h3>
+                <div class="order-review">
+                    <div class="review-section">
+                        <h4><i class="fas fa-shopping-bag" aria-hidden="true"></i> Itens</h4>
+                        <div id="reviewItems"></div>
+                    </div>
+                    <div class="review-section">
+                        <h4><i class="fas fa-user" aria-hidden="true"></i> Cliente</h4>
+                        <div class="review-info" id="reviewCustomer"></div>
+                    </div>
+                    <div class="review-section">
+                        <h4><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Entrega</h4>
+                        <div class="review-info" id="reviewAddress"></div>
+                    </div>
+                    <div class="review-section">
+                        <h4><i class="fas fa-credit-card" aria-hidden="true"></i> Pagamento</h4>
+                        <div class="review-info" id="reviewPayment"></div>
+                    </div>
+                </div>
+                <div class="order-total">
+                    <div class="total-row">
+                        <span>Subtotal</span>
+                        <span id="reviewSubtotal">R$ 0,00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Entrega</span>
+                        <span id="reviewDelivery">R$ 5,00</span>
+                    </div>
+                    <div class="total-row grand">
+                        <span>Total</span>
+                        <span id="reviewTotal">R$ 0,00</span>
+                    </div>
+                </div>
+                <div class="trust-badges" aria-hidden="true">
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                    <span><i class="fas fa-lock"></i> Protegido</span>
+                    <span><i class="fas fa-check-circle"></i> Garantido</span>
+                </div>
+                <div class="step-buttons">
+                    <button class="btn-back" onclick="goToStep(2)">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar
+                    </button>
+                    <button class="btn-whatsapp" onclick="sendToWhatsApp()">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i> Enviar Pedido
                     </button>
                 </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&h=500&fit=crop" alt="Pizza">
-                </div>
-            </div>
-        </section>
-
-        <!-- Menu -->
-        <section class="menu-section">
-            <div id="menuContainer"></div>
-        </section>
-
-        <!-- Info -->
-        <section class="info-section">
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-icon"><i class="fas fa-motorcycle"></i></div>
-                    <h3>Entrega Rápida</h3>
-                    <p>Receba no conforto da sua casa em até 45 minutos</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Pagamento Seguro</h3>
-                    <p>PIX, cartão ou dinheiro. Você escolhe!</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon"><i class="fas fa-heart"></i></div>
-                    <h3>Qualidade Garantida</h3>
-                    <p>Ingredientes frescos e selecionados diariamente</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ==================== BARRA FLUTUANTE DO CARRINHO ==================== -->
-    <div class="cart-bar" id="cartBar" onclick="toggleCart()">
-        <div class="cart-bar-content">
-            <div class="cart-count">
-                <span class="count-badge" id="cartBarQty">0</span>
-                <span>Ver sacola</span>
-            </div>
-            <div class="cart-total">
-                <strong id="cartBarTotal">R$ 0,00</strong>
-                <i class="fas fa-chevron-right"></i>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- ==================== SIDEBAR DO CARRINHO ==================== -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <button class="btn-close" onclick="toggleCart()">
-                <i class="fas fa-chevron-down"></i>
-            </button>
-            <h2>Sua Sacola</h2>
-            <button class="btn-clear" onclick="clearCart()">
-                <i class="fas fa-trash"></i> Limpar
-            </button>
-        </div>
+<!-- OVERLAY GENÉRICO -->
+<div class="overlay" id="overlay" aria-hidden="true"></div>
 
-        <div class="cart-body" id="cartBody">
-            <div class="cart-empty" id="cartEmpty">
-                <div class="empty-icon">🛒</div>
-                <h3>Sua sacola está vazia</h3>
-                <p>Adicione itens deliciosos do nosso cardápio!</p>
-                <button class="btn-browse" onclick="toggleCart()">Ver Cardápio</button>
-            </div>
-            <div id="cartItems"></div>
-        </div>
-
-        <div class="cart-footer" id="cartFooter" style="display: none;">
-            <div class="cart-summary">
-                <div class="summary-row">
-                    <span>Subtotal</span>
-                    <span id="cartSubtotal">R$ 0,00</span>
-                </div>
-                <div class="summary-row">
-                    <span>Taxa de entrega</span>
-                    <span id="cartDelivery">R$ 5,00</span>
-                </div>
-                <div class="summary-row total">
-                    <span>Total</span>
-                    <span id="cartTotal">R$ 0,00</span>
-                </div>
-            </div>
-            <button class="btn-checkout" onclick="openCheckout()">
-                Finalizar Pedido <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
+<!-- TOAST -->
+<div class="toast" id="toast" role="alert" aria-live="assertive" aria-hidden="true">
+    <div class="toast-icon"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
+    <div class="toast-content">
+        <strong id="toastTitle">Sucesso!</strong>
+        <span id="toastMessage">Item adicionado</span>
     </div>
+</div>
 
-    <!-- ==================== MODAL DO PRODUTO ==================== -->
-    <div class="product-modal" id="productModal">
-        <div class="modal-backdrop" onclick="closeProductModal()"></div>
-        <div class="modal-container">
-            <button class="modal-close" onclick="closeProductModal()">
-                <i class="fas fa-times"></i>
-            </button>
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/5584994994919" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Fale conosco no WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+</a>
 
-            <div class="modal-image">
-                <img id="modalImg" src="" alt="">
-                <div class="modal-badge" id="modalBadge"></div>
-            </div>
+<!-- VOLTAR AO TOPO -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
 
-            <div class="modal-content">
-                <span class="modal-category" id="modalCategory"></span>
-                <h2 id="modalTitle"></h2>
-                <p class="modal-description" id="modalDescription"></p>
-
-                <div id="modalModifiers"></div>
-
-                <div class="modal-footer">
-                    <div class="modal-price">
-                        <span class="price-label">Valor</span>
-                        <span class="price-value" id="modalPrice">R$ 0,00</span>
-                    </div>
-                    <div class="modal-actions">
-                        <div class="qty-selector">
-                            <button onclick="updateModalQty(-1)"><i class="fas fa-minus"></i></button>
-                            <span id="modalQty">1</span>
-                            <button onclick="updateModalQty(1)"><i class="fas fa-plus"></i></button>
-                        </div>
-                        <button class="btn-add" onclick="addToCartFromModal()">
-                            Adicionar • <span id="modalTotal">R$ 0,00</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== MODAL DO CHECKOUT ==================== -->
-    <div class="checkout-modal" id="checkoutModal">
-        <div class="modal-backdrop" onclick="closeCheckout()"></div>
-        <div class="modal-container checkout-container">
-
-            <!-- Header do checkout -->
-            <div class="checkout-header">
-                <h2>Finalizar Pedido</h2>
-                <button onclick="closeCheckout()"><i class="fas fa-times"></i></button>
-            </div>
-
-            <!-- Steps -->
-            <div class="checkout-steps">
-                <div class="step active" data-step="1">
-                    <div class="step-num">1</div>
-                    <span>Endereço</span>
-                </div>
-                <div class="step-line"></div>
-                <div class="step" data-step="2">
-                    <div class="step-num">2</div>
-                    <span>Pagamento</span>
-                </div>
-                <div class="step-line"></div>
-                <div class="step" data-step="3">
-                    <div class="step-num">3</div>
-                    <span>Revisão</span>
-                </div>
-            </div>
-
-            <div class="checkout-body">
-
-                <!-- ========== STEP 1: ENDEREÇO ========== -->
-                <div class="checkout-step active" id="step1">
-                    <h3><i class="fas fa-map-marker-alt"></i> Endereço de Entrega</h3>
-                    <div class="form-group">
-                        <label>Nome completo *</label>
-                        <input type="text" id="customerName" placeholder="Seu nome">
-                    </div>
-                    <div class="form-group">
-                        <label>WhatsApp *</label>
-                        <input type="tel" id="customerPhone" placeholder="(84) 99999-9999">
-                    </div>
-                    <div class="form-group">
-                        <label>Rua *</label>
-                        <input type="text" id="customerStreet" placeholder="Nome da rua">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Número *</label>
-                            <input type="text" id="customerNumber" placeholder="123">
-                        </div>
-                        <div class="form-group">
-                            <label>Bairro *</label>
-                            <input type="text" id="customerNeighborhood" placeholder="Bairro">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Complemento</label>
-                        <input type="text" id="customerComplement" placeholder="Apto, bloco, referência...">
-                    </div>
-                    <button class="btn-next" onclick="goToStep(2)">
-                        Continuar <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-
-                <!-- ========== STEP 2: PAGAMENTO ========== -->
-                <div class="checkout-step" id="step2">
-                    <h3><i class="fas fa-credit-card"></i> Forma de Pagamento</h3>
-
-                    <!-- Total resumido -->
-                    <div class="payment-total-summary">
-                        <span>Total do pedido:</span>
-                        <strong id="paymentTotalDisplay">R$ 0,00</strong>
-                    </div>
-
-                    <!-- Opções de pagamento -->
-                    <div class="payment-options">
-
-                        <!-- PIX -->
-                        <label class="payment-option">
-                            <input type="radio" name="payment" value="pix" checked onchange="togglePaymentView()">
-                            <div class="payment-card">
-                                <div class="payment-icon pix"><i class="fas fa-qrcode"></i></div>
-                                <div class="payment-info">
-                                    <strong>PIX</strong>
-                                    <span>Aprovação instantânea</span>
-                                </div>
-                                <div class="payment-right">
-                                    <div class="payment-badge">Recomendado</div>
-                                    <div class="payment-value" id="pixCardValue">R$ 0,00</div>
-                                </div>
-                            </div>
-                        </label>
-
-                        <!-- Cartão -->
-                        <label class="payment-option">
-                            <input type="radio" name="payment" value="cartao" onchange="togglePaymentView()">
-                            <div class="payment-card">
-                                <div class="payment-icon card"><i class="fas fa-credit-card"></i></div>
-                                <div class="payment-info">
-                                    <strong>Cartão</strong>
-                                    <span>Maquininha na entrega</span>
-                                </div>
-                                <div class="payment-right">
-                                    <div class="payment-value" id="cartaoCardValue">R$ 0,00</div>
-                                </div>
-                            </div>
-                        </label>
-
-                        <!-- Dinheiro -->
-                        <label class="payment-option">
-                            <input type="radio" name="payment" value="dinheiro" onchange="togglePaymentView()">
-                            <div class="payment-card">
-                                <div class="payment-icon cash"><i class="fas fa-money-bill-wave"></i></div>
-                                <div class="payment-info">
-                                    <strong>Dinheiro</strong>
-                                    <span>Pagamento na entrega</span>
-                                </div>
-                                <div class="payment-right">
-                                    <div class="payment-value" id="dinheiroCardValue">R$ 0,00</div>
-                                </div>
-                            </div>
-                        </label>
-                    </div>
-
-                    <!-- Detalhes PIX -->
-                    <div class="payment-details" id="pixSection">
-                        <div class="pix-container">
-                            <div class="pix-amount">
-                                <span>Valor a pagar:</span>
-                                <strong id="pixAmount">R$ 0,00</strong>
-                            </div>
-                            <div class="pix-qr">
-                                <img id="pixQR" src="" alt="QR Code PIX" style="display:none;">
-                                <div class="pix-loading" id="pixLoading" style="display:flex;">
-                                    <div class="spinner"></div>
-                                    <span>Gerando código...</span>
-                                </div>
-                            </div>
-                            <div class="pix-copy">
-                                <label>Código PIX Copia e Cola:</label>
-                                <div class="copy-field">
-                                    <input type="text" id="pixCode" readonly>
-                                    <button onclick="copyPixCode()">
-                                        <i class="fas fa-copy"></i> Copiar
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="pix-key">
-                                <label>Ou use a chave:</label>
-                                <div class="copy-field">
-                                    <input type="text" id="pixKey" value="84994994919" readonly>
-                                    <button onclick="copyPixKey()">
-                                        <i class="fas fa-copy"></i> Copiar
-                                    </button>
-                                </div>
-                                <small>⚠️ Informe o valor exato: <strong id="pixKeyValue">R$ 0,00</strong></small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Detalhes Dinheiro -->
-                    <div class="payment-details" id="cashSection" style="display: none;">
-                        <div class="cash-question">
-                            <i class="fas fa-coins"></i>
-                            <span>Precisa de troco?</span>
-                        </div>
-                        <div class="cash-options">
-                            <label class="cash-option">
-                                <input type="radio" name="change" value="no" checked onchange="toggleChangeField()">
-                                <div class="cash-card">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Não preciso</span>
-                                </div>
-                            </label>
-                            <label class="cash-option">
-                                <input type="radio" name="change" value="yes" onchange="toggleChangeField()">
-                                <div class="cash-card">
-                                    <i class="fas fa-exchange-alt"></i>
-                                    <span>Sim, preciso</span>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="form-group" id="changeField" style="display: none;">
-                            <label>Troco para quanto?</label>
-                            <input type="text" id="changeAmount" placeholder="R$ 50,00">
-                        </div>
-                    </div>
-
-                    <div class="step-buttons">
-                        <button class="btn-back" onclick="goToStep(1)">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <button class="btn-next" onclick="goToStep(3)">
-                            Revisar <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- ========== STEP 3: REVISÃO ========== -->
-                <div class="checkout-step" id="step3">
-                    <h3><i class="fas fa-clipboard-check"></i> Revisar Pedido</h3>
-
-                    <div class="order-review">
-                        <div class="review-section">
-                            <h4><i class="fas fa-shopping-bag"></i> Itens</h4>
-                            <div id="reviewItems"></div>
-                        </div>
-                        <div class="review-section">
-                            <h4><i class="fas fa-user"></i> Cliente</h4>
-                            <div class="review-info" id="reviewCustomer"></div>
-                        </div>
-                        <div class="review-section">
-                            <h4><i class="fas fa-map-marker-alt"></i> Entrega</h4>
-                            <div class="review-info" id="reviewAddress"></div>
-                        </div>
-                        <div class="review-section">
-                            <h4><i class="fas fa-credit-card"></i> Pagamento</h4>
-                            <div class="review-info" id="reviewPayment"></div>
-                        </div>
-                    </div>
-
-                    <div class="order-total">
-                        <div class="total-row">
-                            <span>Subtotal</span>
-                            <span id="reviewSubtotal">R$ 0,00</span>
-                        </div>
-                        <div class="total-row">
-                            <span>Entrega</span>
-                            <span id="reviewDelivery">R$ 5,00</span>
-                        </div>
-                        <div class="total-row grand">
-                            <span>Total</span>
-                            <span id="reviewTotal">R$ 0,00</span>
-                        </div>
-                    </div>
-
-                    <div class="trust-badges">
-                        <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                        <span><i class="fas fa-lock"></i> Protegido</span>
-                        <span><i class="fas fa-check-circle"></i> Garantido</span>
-                    </div>
-
-                    <div class="step-buttons">
-                        <button class="btn-back" onclick="goToStep(2)">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                        <button class="btn-whatsapp" onclick="sendToWhatsApp()">
-                            <i class="fab fa-whatsapp"></i> Enviar Pedido
-                        </button>
-                    </div>
-                </div>
-
-            </div><!-- fim checkout-body -->
-        </div><!-- fim modal-container -->
-    </div><!-- fim checkout-modal -->
-
-    <!-- ==================== OVERLAY ==================== -->
-    <div class="overlay" id="overlay" onclick="closeAll()"></div>
-
-    <!-- ==================== TOAST ==================== -->
-    <div class="toast" id="toast">
-        <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
-        <div class="toast-content">
-            <strong id="toastTitle">Sucesso!</strong>
-            <span id="toastMessage">Item adicionado</span>
-        </div>
-    </div>
-
-    <!-- ==================== WHATSAPP FLOAT ==================== -->
-    <a href="https://wa.me/5584994994919" target="_blank" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- ==================== BACK TO TOP ==================== -->
-    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- ==================== SCRIPT ==================== -->
-    <script src="app.js"></script>
-
+<script src="app.js"></script>
 </body>
 </html>
