@@ -420,7 +420,7 @@ const CONFIG = {
 };
 
 const HORARIO = {
-  abertura:       "18:00",
+  abertura:       "05:00",
   fechamento:     "23:00",
   
 };
