@@ -156,6 +156,22 @@ const recheiosCuscuzModifier = {
     { name: "Carne de Sol na Nata",    price: 1 },
   ],
 };
+const adicionaisCuscuzETapiocaModifier = {
+  name: "Adicionais",
+  required: false,
+  multiple: true,
+  minSelect: 0,
+  maxSelect: 7,
+  options: [
+    { name: "Vinagrete",            price: 2 },
+    { name: "Ovo",                  price: 2 },
+    { name: "Catupiry (requeijão)", price: 2 },
+    { name: "Cheddar (requeijão)",  price: 2 },
+    { name: "Queijo Coalho",        price: 3 },
+    { name: "Catupiry (original)",  price: 4 },
+    { name: "Cheddar (original)",   price: 4 },
+  ],
+};
 
 const saborMassaModifier = {
   name: "Sabor", required: true, multiple: false,
@@ -230,7 +246,7 @@ const MENU = [
   { id:35, category:"cuscuz", name:"Cuscuz",
     description:"Recheios: Carne de Sol com Queijo, Frango com Queijo, Calabresa, Carne de Sol na Nata",
     price:8, image:"imagem/cuscuzcalabresa.jpg", badge:null,
-    modifiers:[recheiosCuscuzModifier] },
+    modifiers:[recheiosCuscuzModifier , adicionaisCuscuzETapiocaModifier] },
 
   // CACHORRO-QUENTE
   { id:39, category:"cachorro-quente", name:"Tradicional",
@@ -391,29 +407,6 @@ const MENU = [
         "Goiaba","Acerola","Cajá","Caju","Maracujá","Mangaba","Uva","Graviola","Morango","Abacaxi com hortelã",
       ].map(n => ({name:n, price:0})) }
     ] },
-
-  // ADICIONAIS
-  { id:81, category:"adicionais", name:"Vinagrete",
-    description:"Adicional de vinagrete",
-    price:2, image:"imagem/adicional.jpg", badge:null, modifiers:[] },
-  { id:82, category:"adicionais", name:"Ovo",
-    description:"Adicional de ovo",
-    price:2, image:"imagem/adicional.jpg", badge:null, modifiers:[] },
-  { id:83, category:"adicionais", name:"Catupiry (requeijão)",
-    description:"Adicional de catupiry tipo requeijão",
-    price:2, image:"imagem/adicional.jpg", badge:null, modifiers:[] },
-  { id:84, category:"adicionais", name:"Cheddar (requeijão)",
-    description:"Adicional de cheddar tipo requeijão",
-    price:2, image:"imagem/adicional.jpg", badge:null, modifiers:[] },
-  { id:85, category:"adicionais", name:"Queijo Coalho",
-    description:"Adicional de queijo coalho",
-    price:3, image:"imagem/adicional.jpg", badge:null, modifiers:[] },
-  { id:86, category:"adicionais", name:"Catupiry (original)",
-    description:"Adicional de catupiry original",
-    price:4, image:"imagem/adicional.jpg", badge:null, modifiers:[] },
-  { id:87, category:"adicionais", name:"Cheddar (original)",
-    description:"Adicional de cheddar original",
-    price:4, image:"imagem/adicional.jpg", badge:null, modifiers:[] },
 ];
 
 // ── Configuração ──
@@ -427,9 +420,9 @@ const CONFIG = {
 };
 
 const HORARIO = {
-  abertura:       "07:00",
-  fechamento:     "21:00",
-  fechadoDomingo: true,
+  abertura:       "18:00",
+  fechamento:     "23:00",
+  
 };
 
 const FALLBACK_IMG = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80";
@@ -487,7 +480,7 @@ function verificarHorario() {
   const [hF,mF]  = HORARIO.fechamento.split(":").map(Number);
 
   let aberto = minAtual >= hA*60+mA && minAtual < hF*60+mF;
-  if (HORARIO.fechadoDomingo && dia === 0) aberto = false;
+  if (HORARIO.fechado && dia === 0) aberto = false;
   lojaAberta = aberto;
 
   const badge = $("status-loja");
