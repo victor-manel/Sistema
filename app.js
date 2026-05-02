@@ -422,7 +422,7 @@ const CONFIG = {
   pix:      "84994994919",
   pixName:  "EMANUEL",
   pixCity:  "NATAL",
-  delivery: 5.0,
+  delivery: 0.0,
   storeName:"Império Lanches",
 };
 
