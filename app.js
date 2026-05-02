@@ -206,35 +206,42 @@ const MENU = [
   { id:19, category:"hamburgueres", name:"X-Burg",
     description:"Pão, hambúrguer, queijo e presunto",
     price:7, image:"imagem/xburguer.jpg", badge:null, modifiers:[] },
-  { id:20, category:"hamburgueres", name:"Bauru",
+  
+    { id:20, category:"hamburgueres", name:"Bauru",
     description:"Pão, hambúrguer, alface, tomate, ovo, queijo e presunto",
-    price:8, image:"https://images.unsplash.com/photo-1568901346375-23c9450f85934?w=400&q=80", badge:null, modifiers:[] },
-  { id:21, category:"hamburgueres", name:"X-Bacon",
+    price:8, image:"imagem/bauru.jpg", badge:null, modifiers:[] },
+  
+    { id:21, category:"hamburgueres", name:"X-Bacon",
     description:"Pão, bacon, hambúrguer, ovo, queijo, presunto, alface e tomate",
-    price:10, image:"https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&q=80", badge:"MAIS PEDIDO", modifiers:[] },
-  { id:22, category:"hamburgueres", name:"X-Calabresa",
+    price:10, image:"imagem/xbacon.jpg", badge:"MAIS PEDIDO", modifiers:[] },
+  
+    { id:22, category:"hamburgueres", name:"X-Calabresa",
     description:"Pão, calabresa acebolada, hambúrguer, queijo mussarela, alface e tomate",
     price:10, image:"https://images.unsplash.com/photo-1603064752734-4c48eff53d05?w=400&q=80", badge:null, modifiers:[] },
-  { id:23, category:"hamburgueres", name:"X-Tudo",
+  
+    { id:23, category:"hamburgueres", name:"X-Tudo",
     description:"Pão, hambúrguer, ovo, bacon, salsicha, frango, presunto, queijo, alface e tomate",
-    price:12, image:"https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&q=80", badge:"FAVORITO", modifiers:[] },
-  { id:24, category:"hamburgueres", name:"X-Frango com Catupiry",
+    price:12, image:"imagem/xtudo.png", badge:"FAVORITO", modifiers:[] },
+ 
+    { id:24, category:"hamburgueres", name:"X-Frango com Catupiry",
     description:"Pão, frango, catupiry, ovo, alface e tomate",
     price:12, image:"https://images.unsplash.com/photo-1596956470007-2bf6095e7e16?w=400&q=80", badge:null, modifiers:[] },
-  { id:25, category:"hamburgueres", name:"X-Carne de Sol",
+  
+    { id:25, category:"hamburgueres", name:"X-Carne de Sol",
     description:"Pão, carne de sol na nata, ovo, queijo, alface e tomate",
-    price:13, image:"https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&q=80", badge:"ESPECIAL", modifiers:[] },
-  { id:26, category:"hamburgueres", name:"Moda da Casa",
+    price:13, image:"imagem/xcarnesol.jpg", badge:"ESPECIAL", modifiers:[] },
+ 
+    { id:26, category:"hamburgueres", name:"Moda da Casa",
     description:"Pão, hambúrguer duplo, ovo, presunto duplo, queijo duplo, bacon, frango, salsicha, catupiry, alface e tomate",
     price:15, image:"https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=400&q=80", badge:"PREMIUM", modifiers:[] },
 
   // ARTESANAL
   { id:27, category:"hamburgueres-artesanal", name:"X-Cheddar",
     description:"Pão brioche, hambúrguer artesanal (100g), cheddar, bacon, cebola roxa e molho especial",
-    price:18, image:"https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=400&q=80", badge:"ARTESANAL", modifiers:[] },
+    price:18, image:"imagem/xchedar.webp", badge:"ARTESANAL", modifiers:[] },
   { id:28, category:"hamburgueres-artesanal", name:"Duplo Cheddar",
     description:"Pão brioche, dois hambúrgueres artesanais (100g cada), cheddar, bacon, cebola roxa e molho especial",
-    price:22, image:"https://images.unsplash.com/photo-1586816001966-79b736744398?w=400&q=80", badge:"PREMIUM", modifiers:[] },
+    price:22, image:"imagem/duplochedar.jpg", badge:"PREMIUM", modifiers:[] },
 
   // TAPIOCA
   { id:29, category:"tapioca", name:"Tapioca",

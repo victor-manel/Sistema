@@ -241,6 +241,13 @@
                     <label for="customerComplement">Complemento</label>
                     <input type="text" id="customerComplement" placeholder="Apto, bloco, referência..." autocomplete="off">
                 </div>
+
+                <!-- SALVAR DADOS -->
+                <label class="save-login-label" style="display:flex;align-items:center;gap:8px;margin-bottom:12px;cursor:pointer;font-size:12px;color:var(--text-dim);user-select:none;">
+                    <input type="checkbox" id="saveLoginData" style="accent-color:var(--primary);width:15px;height:15px;cursor:pointer;">
+                    <span><i class="fas fa-bookmark" style="color:var(--primary);margin-right:3px;"></i> Lembrar meus dados para o próximo pedido</span>
+                </label>
+
                 <button class="btn-next" onclick="goToStep(2)">
                     Continuar <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </button>
@@ -440,5 +447,70 @@
 </button>
 
 <script src="app.js"></script>
+
+<script>
+/* ============================================================
+   SALVAR / CARREGAR DADOS DO CLIENTE (localStorage)
+   ============================================================ */
+(function () {
+    var STORAGE_KEY = 'imperio_cliente';
+
+    function loadSavedLogin() {
+        try {
+            var saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            if (!saved) return;
+            var fields = [
+                ['customerName',         saved.name],
+                ['customerPhone',        saved.phone],
+                ['customerStreet',       saved.street],
+                ['customerNumber',       saved.number],
+                ['customerNeighborhood', saved.neighborhood],
+                ['customerComplement',   saved.complement]
+            ];
+            fields.forEach(function(f){
+                var el = document.getElementById(f[0]);
+                if (el && f[1]) el.value = f[1];
+            });
+            var chk = document.getElementById('saveLoginData');
+            if (chk) chk.checked = true;
+        } catch(e) {}
+    }
+
+    /* Salvar ao avançar para o Step 2 */
+    var origGoToStep = window.goToStep;
+    window.goToStep = function(step) {
+        if (step === 2) {
+            var chk = document.getElementById('saveLoginData');
+            if (chk && chk.checked) {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                        name:         (document.getElementById('customerName')         || {}).value || '',
+                        phone:        (document.getElementById('customerPhone')        || {}).value || '',
+                        street:       (document.getElementById('customerStreet')       || {}).value || '',
+                        number:       (document.getElementById('customerNumber')       || {}).value || '',
+                        neighborhood: (document.getElementById('customerNeighborhood') || {}).value || '',
+                        complement:   (document.getElementById('customerComplement')   || {}).value || ''
+                    }));
+                } catch(e) {}
+            } else if (chk && !chk.checked) {
+                localStorage.removeItem(STORAGE_KEY);
+            }
+        }
+        if (typeof origGoToStep === 'function') origGoToStep(step);
+    };
+
+    /* Carregar ao abrir o checkout */
+    var origOpen = window.openCheckout;
+    window.openCheckout = function() {
+        if (typeof origOpen === 'function') origOpen.apply(this, arguments);
+        setTimeout(loadSavedLogin, 80);
+    };
+
+    /* Carregar imediatamente no DOMContentLoaded */
+    document.addEventListener('DOMContentLoaded', function() {
+        if (localStorage.getItem(STORAGE_KEY)) loadSavedLogin();
+    });
+})();
+</script>
 </body>
 </html>
