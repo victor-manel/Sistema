@@ -1,5 +1,3 @@
-
-
 // ── Categorias ──
 const CATEGORIES = [
   { id: "todos",                  name: "Todos",            icon: "🏠" },
@@ -156,6 +154,7 @@ const recheiosCuscuzModifier = {
     { name: "Carne de Sol na Nata",    price: 1 },
   ],
 };
+
 const adicionaisCuscuzETapiocaModifier = {
   name: "Adicionais",
   required: false,
@@ -206,32 +205,32 @@ const MENU = [
   { id:19, category:"hamburgueres", name:"X-Burg",
     description:"Pão, hambúrguer, queijo e presunto",
     price:7, image:"imagem/xburguer.jpg", badge:null, modifiers:[] },
-  
-    { id:20, category:"hamburgueres", name:"Bauru",
+
+  { id:20, category:"hamburgueres", name:"Bauru",
     description:"Pão, hambúrguer, alface, tomate, ovo, queijo e presunto",
     price:8, image:"imagem/bauru.jpg", badge:null, modifiers:[] },
-  
-    { id:21, category:"hamburgueres", name:"X-Bacon",
+
+  { id:21, category:"hamburgueres", name:"X-Bacon",
     description:"Pão, bacon, hambúrguer, ovo, queijo, presunto, alface e tomate",
     price:10, image:"imagem/xbacon.jpg", badge:"MAIS PEDIDO", modifiers:[] },
-  
-    { id:22, category:"hamburgueres", name:"X-Calabresa",
+
+  { id:22, category:"hamburgueres", name:"X-Calabresa",
     description:"Pão, calabresa acebolada, hambúrguer, queijo mussarela, alface e tomate",
     price:10, image:"https://images.unsplash.com/photo-1603064752734-4c48eff53d05?w=400&q=80", badge:null, modifiers:[] },
-  
-    { id:23, category:"hamburgueres", name:"X-Tudo",
+
+  { id:23, category:"hamburgueres", name:"X-Tudo",
     description:"Pão, hambúrguer, ovo, bacon, salsicha, frango, presunto, queijo, alface e tomate",
     price:12, image:"imagem/xtudo.png", badge:"FAVORITO", modifiers:[] },
- 
-    { id:24, category:"hamburgueres", name:"X-Frango com Catupiry",
+
+  { id:24, category:"hamburgueres", name:"X-Frango com Catupiry",
     description:"Pão, frango, catupiry, ovo, alface e tomate",
     price:12, image:"https://images.unsplash.com/photo-1596956470007-2bf6095e7e16?w=400&q=80", badge:null, modifiers:[] },
-  
-    { id:25, category:"hamburgueres", name:"X-Carne de Sol",
+
+  { id:25, category:"hamburgueres", name:"X-Carne de Sol",
     description:"Pão, carne de sol na nata, ovo, queijo, alface e tomate",
     price:13, image:"imagem/xcarnesol.jpg", badge:"ESPECIAL", modifiers:[] },
- 
-    { id:26, category:"hamburgueres", name:"Moda da Casa",
+
+  { id:26, category:"hamburgueres", name:"Moda da Casa",
     description:"Pão, hambúrguer duplo, ovo, presunto duplo, queijo duplo, bacon, frango, salsicha, catupiry, alface e tomate",
     price:15, image:"https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=400&q=80", badge:"PREMIUM", modifiers:[] },
 
@@ -253,7 +252,7 @@ const MENU = [
   { id:35, category:"cuscuz", name:"Cuscuz",
     description:"Recheios: Carne de Sol com Queijo, Frango com Queijo, Calabresa, Carne de Sol na Nata",
     price:8, image:"imagem/cuscuzcalabresa.jpg", badge:null,
-    modifiers:[recheiosCuscuzModifier , adicionaisCuscuzETapiocaModifier] },
+    modifiers:[recheiosCuscuzModifier, adicionaisCuscuzETapiocaModifier] },
 
   // CACHORRO-QUENTE
   { id:39, category:"cachorro-quente", name:"Tradicional",
@@ -427,9 +426,8 @@ const CONFIG = {
 };
 
 const HORARIO = {
-  abertura:       "05:00",
-  fechamento:     "23:00",
-  
+  abertura:   "05:00",
+  fechamento: "23:00",
 };
 
 const FALLBACK_IMG = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80";
@@ -453,8 +451,8 @@ let lastFocusedElement = null;
 // ATALHOS DOM
 // ============================================================
 const $ = (id) => document.getElementById(id);
-const setText  = (id, val) => { const el=$(id); if(el) el.textContent = val; };
-const setHTML  = (id, val) => { const el=$(id); if(el) el.innerHTML   = val; };
+const setText = (id, val) => { const el=$(id); if(el) el.textContent = val; };
+const setHTML = (id, val) => { const el=$(id); if(el) el.innerHTML   = val; };
 
 // ============================================================
 // UTILITÁRIOS
@@ -585,27 +583,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); });
 
-  // Limita checkboxes de acompanhamentos/adicionais pelo maxSelect
+  // ✅ CORREÇÃO DO BUG: Valida ANTES de permitir o check
   document.addEventListener("change", (e) => {
     const input = e.target;
     if (input.type !== "checkbox" || !input.dataset.modifierIndex) return;
 
-    const modIndex  = input.dataset.modifierIndex;
+    const modIndex  = parseInt(input.dataset.modifierIndex, 10);
     const maxSelect = parseInt(input.dataset.maxSelect || "0", 10);
-    if (!maxSelect) return;
 
-    const checked = document.querySelectorAll(
-      `#modalModifiers input[type="checkbox"][data-modifier-index="${modIndex}"]:checked`
-    );
+    if (maxSelect && input.checked) {
+      // Conta quantos estão marcados AGORA (já inclui o atual pois o change já ocorreu)
+      const checked = document.querySelectorAll(
+        `#modalModifiers input[type="checkbox"][data-modifier-index="${modIndex}"]:checked`
+      );
 
-    if (checked.length > maxSelect) {
-      input.checked = false;
-      showToast("Atenção ⚠️", `Você só pode escolher ${maxSelect} opções nesse grupo.`, "warn");
-      return;
+      // ✅ Se ultrapassou o limite, desmarca o que acabou de ser marcado
+      if (checked.length > maxSelect) {
+        input.checked = false;
+        showToast(
+          "Limite atingido ⚠️",
+          `Você só pode escolher ${maxSelect} ${maxSelect === 1 ? "opção" : "opções"} nesse grupo.`,
+          "warn"
+        );
+        return; // Não sincroniza nem atualiza preço
+      }
     }
 
-    // Recalcula total quando checkbox muda
-    syncCheckboxModifier(parseInt(modIndex, 10));
+    syncCheckboxModifier(modIndex);
     updateModalPrice();
   });
 
@@ -718,7 +722,7 @@ function renderMenu() {
 }
 
 function renderCard(p) {
-  const priceStr    = fmt(p.price);
+  const priceStr     = fmt(p.price);
   const hasModifiers = p.modifiers?.some(m => m.required);
   const quickAddAttr = hasModifiers
     ? `onclick="event.stopPropagation(); openProductModal(${p.id})"`
@@ -826,8 +830,8 @@ function openProductModal(productId) {
 
   const badge = $("modalBadge");
   if (badge) {
-    badge.textContent    = p.badge ?? "";
-    badge.style.display  = p.badge ? "block" : "none";
+    badge.textContent   = p.badge ?? "";
+    badge.style.display = p.badge ? "block" : "none";
   }
 
   const cat = CATEGORIES.find(c => c.id === p.category);
@@ -873,7 +877,6 @@ function renderModifiers(p) {
 
     const optionsHTML = mod.options.map((opt, oi) => {
       if (isMultiple) {
-        // CHECKBOX
         return `
           <label class="modifier-option">
             <input type="checkbox"
@@ -881,15 +884,13 @@ function renderModifiers(p) {
                    value="${oi}"
                    data-modifier-index="${mi}"
                    data-option-index="${oi}"
-                   data-max-select="${mod.maxSelect || 0}"
-                   onchange="syncCheckboxModifier(${mi}); updateModalPrice();">
+                   data-max-select="${mod.maxSelect || 0}">
             <div class="option-content">
               <span class="option-name">${escapeHTML(opt.name)}</span>
               ${opt.price > 0 ? `<span class="option-price">+${fmt(opt.price)}</span>` : ""}
             </div>
           </label>`;
       } else {
-        // RADIO
         return `
           <label class="modifier-option">
             <input type="radio"
@@ -936,7 +937,7 @@ function selectModifier(mi, oi, name, price) {
 
 // Atualiza selectedModifiers para grupos CHECKBOX
 function syncCheckboxModifier(mi) {
-  const mod     = modalProduct?.modifiers[mi];
+  const mod = modalProduct?.modifiers[mi];
   if (!mod) return;
 
   const checked = document.querySelectorAll(
@@ -982,9 +983,8 @@ function calcModsTotal() {
 function addToCartFromModal() {
   if (!modalProduct) return;
 
-  // Valida modificadores obrigatórios
   for (let mi = 0; mi < modalProduct.modifiers.length; mi++) {
-    const mod = modalProduct.modifiers[mi];
+    const mod      = modalProduct.modifiers[mi];
     if (!mod.required) continue;
 
     const selected = selectedModifiers[mi] || [];
@@ -1078,8 +1078,8 @@ function updateCartUI() {
     badge.classList.add("pop");
   }
 
-  setText("cartBarQty",    totalQty);
-  setText("cartBarTotal",  fmt(total));
+  setText("cartBarQty",   totalQty);
+  setText("cartBarTotal", fmt(total));
   const bar = $("cartBar");
   if (bar) bar.style.display = totalQty > 0 ? "flex" : "none";
 
@@ -1188,8 +1188,8 @@ function loadCart() {
 // CARRINHO — Toggle sidebar
 // ============================================================
 function toggleCart() {
-  const sidebar  = $("cartSidebar");
-  const overlay  = $("overlay");
+  const sidebar = $("cartSidebar");
+  const overlay = $("overlay");
   if (!sidebar) return;
 
   const isOpen = sidebar.classList.contains("active");
